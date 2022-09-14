@@ -10,15 +10,15 @@
 
 // Credenciales wifi
 /* 1. Define the WiFi credentials */
-#define ssid "Tec-IoT"
-#define password "spotless.magnetic.bridge"
+#define ssid "DavideHotspot"
+#define password "Master24Reference"
 
 /* 2. Define the API Key */
-#define API_KEY "AIzaSyDhpN1NDjAVuoArqHuM6FGz4MC3yC_wEps"
+#define API_KEY "AIzaSyCFcJh4SKTTkDrPGCEOvsIW1BOYZGULDvc"
 
 /* 3. Credenciales Proyecto Firebase */
-const char *FIREBASE_HOST="https://tc1001s-f0c92-default-rtdb.firebaseio.com/"; 
-const char *FIREBASE_AUTH="T2GIq4aYLRIH1EksNVV1TZHQwBxC8UWtE9tKMXRY";
+const char *FIREBASE_HOST="https://tc1001s-45f4f-default-rtdb.firebaseio.com/"; 
+const char *FIREBASE_AUTH="UdnaymkGUQWPk9gyIBXBNjTuwisXtM7S1WqAkKKk";
 
 // Firebase Data object in the global scope
 FirebaseData firebaseData;
