@@ -4,6 +4,25 @@
  * Davide Dunne Sanchez    A01642355
  */
 
+//Librerias para Wi-Fi y Firebase
+#include <ESP8266WiFi.h>
+#include "FirebaseESP8266.h"
+
+// Credenciales wifi
+/* 1. Define the WiFi credentials */
+#define ssid "Tec-IoT"
+#define password "spotless.magnetic.bridge"
+
+/* 2. Define the API Key */
+#define API_KEY "AIzaSyDhpN1NDjAVuoArqHuM6FGz4MC3yC_wEps"
+
+/* 3. Credenciales Proyecto Firebase */
+const char *FIREBASE_HOST="https://tc1001s-f0c92-default-rtdb.firebaseio.com/"; 
+const char *FIREBASE_AUTH="T2GIq4aYLRIH1EksNVV1TZHQwBxC8UWtE9tKMXRY";
+
+// Firebase Data object in the global scope
+FirebaseData firebaseData;
+
 //Definimos Variables---------------------------------------------------------------------------
 
 //Variables para foto resistor-------------------------------------------------&
@@ -33,6 +52,28 @@ DHT dht(DHTPin, DHTTYPE);
 
 //Inicia SetUp-------------------------------------------------------------------------------------
 void setup() {
+  
+  //Wi-Fi y Firebase
+
+  Serial.begin(115200);
+  Serial.println();
+  pinMode(LED_BUILTIN, OUTPUT); 
+  pinMode(ledPin, OUTPUT);
+
+  WiFi.begin(ssid, password);
+
+  while (WiFi.status() != WL_CONNECTED)
+  {
+    Serial.print(".");
+    delay(250);
+  }
+  Serial.print("\nConectado al Wi-Fi");
+  Serial.println();
+
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
+  
+  Firebase.reconnectWiFi(true);
+  
   //Foto resistor
   pinMode(ledPin, OUTPUT);
   Serial.begin(9600);
@@ -48,7 +89,7 @@ void setup() {
 
    dht.begin();
 
-
+}
 //Inicia loop--------------------------------------------------------------------------------------
 void loop() {
   //Foto Resistor----------------------------------------------------------------&
